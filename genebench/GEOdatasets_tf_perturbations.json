@@ -1,0 +1,734 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "geoid":"GDS1245",
+      "tf": "GATA1",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 1
+    },
+    {
+      "id": 2,
+      "geoid":"GDS1733",
+      "tf": "HSF1",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 1
+    },
+    {
+      "id": 3,
+      "geoid":"GDS1824",
+      "tf": "NANOG",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 0,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 1
+    },
+    {
+      "id": 4,
+      "geoid":"GDS1824",
+      "tf": "POU5F1",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 1
+    },
+    {
+      "id": 5,
+      "geoid":"GDS1942",
+      "tf": "KLF4",
+      "perturbation_type": "OE",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 6,
+      "geoid":"GDS2069",
+      "tf": "KLF7",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 7,
+      "geoid":"GDS2088",
+      "tf": "TP63",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 8,
+      "geoid":"GDS2193",
+      "tf": "SOX4",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 9,
+      "geoid":"GDS2359",
+      "tf": "IRF6",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 0,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 10,
+      "geoid":"GDS2411",
+      "tf": "SPI1",
+      "perturbation_type": "KD",
+      "tf_on_array": 0,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 11,
+      "geoid":"GDS2526",
+      "tf": "MYC",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 12,
+      "geoid":"GDS2629",
+      "tf": "GRHL3",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 13,
+      "geoid":"GDS2703",
+      "tf": "KLF9",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 14,
+      "geoid":"GDS2724",
+      "tf": "BMI1",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 15,
+      "geoid":"GDS2724",
+      "tf": "PCGF2",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 16,
+      "geoid":"GDS2747",
+      "tf": "WT1",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 17,
+      "geoid":"GDS2761",
+      "tf": "HIF1A",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 18,
+      "geoid":"GDS2761",
+      "tf": "HIF2A",
+      "perturbation_type": "KD",
+      "tf_on_array": 0,
+      "interacting_gene_present_on_array": 0,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 19,
+      "geoid":"GDS2789",
+      "tf": "LMO4",
+      "perturbation_type": "DN",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 20,
+      "geoid":"GDS2817",
+      "tf": "GLIS2",
+      "perturbation_type": "KO/VR",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 0,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 21,
+      "geoid":"GDS3000",
+      "tf": "NEUROD1",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 22,
+      "geoid":"GDS3010",
+      "tf": "PLAGL2",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 0,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 23,
+      "geoid":"GDS3058",
+      "tf": "SP3",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 24,
+      "geoid":"GDS3106",
+      "tf": "STAT3",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 1
+    },
+    {
+      "id": 25,
+      "geoid":"GDS3171",
+      "tf": "TFAP2C",
+      "perturbation_type": "VR",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 26,
+      "geoid":"GDS3173",
+      "tf": "EMX2",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 0,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 27,
+      "geoid":"GDS3178",
+      "tf": "BCL11B",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 28,
+      "geoid":"GDS3320",
+      "tf": "LMX1B",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 0,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 29,
+      "geoid":"GDS3385",
+      "tf": "STAT5B",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 30,
+      "geoid":"GDS3406",
+      "tf": "NFE2L2",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 31,
+      "geoid":"GDS3446",
+      "tf": "STAT3",
+      "perturbation_type": "OE",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 1
+    },
+    {
+      "id": 32,
+      "geoid":"GDS3486",
+      "tf": "GATA4",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 33,
+      "geoid":"GDS3487",
+      "tf": "CREB1",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 1
+    },
+    {
+      "id": 34,
+      "geoid":"GDS3577",
+      "tf": "CBFB",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 35,
+      "geoid":"GDS3578",
+      "tf": "CTNNB1",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 36,
+      "geoid":"GDS3607",
+      "tf": "EGR1",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 1
+    },
+    {
+      "id": 37,
+      "geoid":"GDS3622",
+      "tf": "NFE2L2",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 38,
+      "geoid":"GDS3659",
+      "tf": "ZFPM2",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 39,
+      "geoid":"GDS3663",
+      "tf": "GATA4",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 40,
+      "geoid":"GDS3730",
+      "tf": "TARDBP",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 41,
+      "geoid":"GDS3732",
+      "tf": "SRF",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 1
+    },
+    {
+      "id": 42,
+      "geoid":"GDS3788",
+      "tf": "YY1",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 1
+    },
+    {
+      "id": 43,
+      "geoid":"GDS3788",
+      "tf": "YY2",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 0,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 44,
+      "geoid":"GDS3812",
+      "tf": "GLIS3",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 45,
+      "geoid":"GDS3912",
+      "tf": "CTNNB1",
+      "perturbation_type": "VR",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 46,
+      "geoid":"GDS3926",
+      "tf": "HNF4A",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 1
+    },
+    {
+      "id": 47,
+      "geoid":"GDS4042",
+      "tf": "POU4F1",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 48,
+      "geoid":"GDS4058",
+      "tf": "SIRT3",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 49,
+      "geoid":"GDS4061",
+      "tf": "ESR1",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 50,
+      "geoid":"GDS4080",
+      "tf": "GATA3",
+      "perturbation_type": "OE",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 1
+    },
+    {
+      "id": 51,
+      "geoid":"GDS4094",
+      "tf": "E2F1",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 1
+    },
+    {
+      "id": 52,
+      "geoid":"GDS4094",
+      "tf": "E2F2",
+      "perturbation_type": "KD",
+      "tf_on_array": 0,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 53,
+      "geoid":"GDS4095",
+      "tf": "NCOA",
+      "perturbation_type": "KD",
+      "tf_on_array": 0,
+      "interacting_gene_present_on_array": 0,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 54,
+      "geoid":"GDS4280",
+      "tf": "BCOR",
+      "perturbation_type": "VR",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 55,
+      "geoid":"GDS4294",
+      "tf": "RARA",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 56,
+      "geoid":"GDS4302",
+      "tf": "GFI1B",
+      "perturbation_type": "OE",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 0,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 57,
+      "geoid":"GDS4309",
+      "tf": "EZH2",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 58,
+      "geoid":"GDS4315",
+      "tf": "OTT1",
+      "perturbation_type": "KO",
+      "tf_on_array": 0,
+      "interacting_gene_present_on_array": 0,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 59,
+      "geoid":"GDS4315",
+      "tf": "RBM15",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 0,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 60,
+      "geoid":"GDS4320",
+      "tf": "PPARB",
+      "perturbation_type": "KO",
+      "tf_on_array": 0,
+      "interacting_gene_present_on_array": 0,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 61,
+      "geoid":"GDS4320",
+      "tf": "PPARD",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 62,
+      "geoid":"GDS4341",
+      "tf": "MIST1",
+      "perturbation_type": "KD",
+      "tf_on_array": 0,
+      "interacting_gene_present_on_array": 0,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 63,
+      "geoid":"GDS4348",
+      "tf": "PDX1",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 64,
+      "geoid":"GDS4370",
+      "tf": "PPARG",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 65,
+      "geoid":"GDS4373",
+      "tf": "AIRE",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 66,
+      "geoid":"GDS4386",
+      "tf": "CTNNB1",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 67,
+      "geoid":"GDS4388",
+      "tf": "SIN3A",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 1
+    },
+    {
+      "id": 68,
+      "geoid":"GDS4407",
+      "tf": "CEBPA",
+      "perturbation_type": "VR",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 69,
+      "geoid":"GDS4416",
+      "tf": "NOD2",
+      "perturbation_type": "VR",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 70,
+      "geoid":"GDS514",
+      "tf": "NFE2L2",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 71,
+      "geoid":"GDS791",
+      "tf": "ESR2",
+      "perturbation_type": "KO",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 1,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 72,
+      "geoid":"GDS998",
+      "tf": "TCOF1",
+      "perturbation_type": "KD",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    },
+    {
+      "id": 73,
+      "geoid":"GDS998",
+      "tf": "TCOF1",
+      "perturbation_type": "OE",
+      "tf_on_array": 1,
+      "interacting_gene_present_on_array": 1,
+      "tf_present_in_chea": 0,
+      "tf_present_in_encode": 0
+    }
+  ]
+}
