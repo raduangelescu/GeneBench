@@ -90,7 +90,7 @@ sudo apt install r-base
 		source("http://bioconductor.org/biocLite.R")
 		biocLite("impute")
 	```
-- Copy "config.json" into your project folder
+- Copy [this config.json](https://raw.githubusercontent.com/raduangelescu/GeneBench/main/examples/config.json) into your project folder
 - make a folder named "data"  in your project folder
 - Run startup function
 ```python
