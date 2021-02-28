@@ -1,0 +1,156 @@
+{
+	"Methods":{
+		"MIDGET Neural[n1]":{
+			"module_name":"diffmethods.MIDGET.neural",
+			"class_name":"MIDGETNeural",
+			"config": {
+				"data_split": 0.25,
+				"method_name":"",
+				"batch_size": 40000,
+				"test_size": 40000,
+				"number_of_epochs": 1000,
+				"save_point_num_batches": 10,
+				"model_name": "n1",
+				"output_folder":"../data/MIDGETNeural" ,
+				"feature_file":"../data/feature_vectors/feature_vectors.pkl"
+			}
+		},
+		"MIDGET Neural[n2]":{
+			"module_name":"diffmethods.MIDGET.neural",
+			"class_name":"MIDGETNeural",
+			"config": {
+				"data_split": 0.25,
+				"method_name":"",
+				"batch_size": 40000,
+				"test_size": 40000,
+				"number_of_epochs": 1000,
+				"save_point_num_batches": 10,
+				"model_name": "n2",
+				"output_folder":"../data/MIDGETNeural",
+				"feature_file":"../data/feature_vectors/feature_vectors.pkl"
+			}
+		},
+		"MIDGET Neural[n3]":{
+			"module_name":"diffmethods.MIDGET.neural",
+			"class_name":"MIDGETNeural",
+			"config": {
+				"data_split": 0.25,
+				"method_name":"",
+				"batch_size": 40000,
+				"test_size": 40000,
+				"number_of_epochs": 1000,
+				"save_point_num_batches": 10,
+				"model_name": "n3",
+				"output_folder":"../data/MIDGETNeural",
+				"feature_file":"../data/feature_vectors/feature_vectors.pkl"
+			}
+		},
+		"MIDGET Neural[n4]":{
+			"module_name":"diffmethods.MIDGET.neural",
+			"class_name":"MIDGETNeural",
+			"config": {
+				"data_split": 0.25,
+				"method_name":"",
+				"batch_size": 40000,
+				"test_size": 40000,
+				"number_of_epochs": 1000,
+				"save_point_num_batches": 10,
+				"model_name": "n4",
+				"output_folder":"../data/MIDGETNeural",
+				"feature_file":"../data/feature_vectors/feature_vectors.pkl"
+			}
+		},
+		"MIDGET Neural[n5]":{
+			"module_name":"diffmethods.MIDGET.neural",
+			"class_name":"MIDGETNeural",
+			"config": {
+				"data_split": 0.25,
+				"method_name":"",
+				"batch_size": 40000,
+				"test_size": 40000,
+				"number_of_epochs": 1000,
+				"save_point_num_batches": 10,
+				"model_name": "n5",
+				"output_folder":"../data/MIDGETNeural",
+				"feature_file":"../data/feature_vectors/feature_vectors.pkl"
+			}
+		},
+		"MIDGET Neural[n6]":{
+			"module_name":"diffmethods.MIDGET.neural",
+			"class_name":"MIDGETNeural",
+			"config": {
+				"data_split": 0.25,
+				"method_name":"",
+				"batch_size": 40000,
+				"test_size": 40000,
+				"number_of_epochs": 1000,
+				"save_point_num_batches": 10,
+				"model_name": "n6",
+				"output_folder":"../data/MIDGETNeural",
+				"feature_file":"../data/feature_vectors/feature_vectors.pkl"
+			}
+		},
+		"MIDGET XGB[xgb1]":{
+			"module_name":"diffmethods.MIDGET.xgb",
+			"class_name":"MIDGETXgBoost",
+			"config": {
+				"feature_file":"../data/feature_vectors/feature_vectors.pkl",
+				"data_split": 0.25,
+				"num_round": 1000,
+				"model_name": "xgb1",
+				"model_folder": "../data/MIDGETXGB",
+				"param": {
+					"verbosity": 2,
+					"nthread": 8,
+					"max_depth":6, 
+					"eta":0.2, 
+					"objective":"binary:logistic"
+				}
+			}
+		},
+		"MIDGET XGB[xgb2]":{
+			"module_name":"diffmethods.MIDGET.xgb",
+			"class_name":"MIDGETXgBoost",
+			"config": {
+				"feature_file":"../data/feature_vectors/feature_vectors.pkl",
+				"data_split": 0.25,
+				"num_round": 1000,
+				"model_name": "xgb2",
+				"model_folder": "../data/MIDGETXGB",
+				"param":{
+					"verbosity": 2,
+					"nthread": 8,
+					"max_depth":12, 
+					"lambda": 0.7,
+					"eta":0.2, 
+					"objective":"binary:logistic"
+				}
+			}
+		}
+	},
+	"Storage":{
+		"providers":{
+			"mongo": {
+				"host":"localhost",
+				"port":27017,
+				"anon":true,
+				"user":"drakera",
+				"password":"surasulfeteidintramvaim-afermecatdefinitiv",
+				"database_name":"gene_expression_test",
+				"validation_collection_name":"validation",
+				"geo_data_collection_name":"geo",
+				"results_collection_name":"results"
+			},
+			"filesystem": {
+				"base_path":"../data/db_test",
+				"validation_folder":"validation",
+				"geo_folder": "geo",
+				"results_folder": "results"
+			}
+		},
+		"load_order":[
+			"filesystem",
+			"mongo"
+		]
+	}
+}

@@ -1,0 +1,342 @@
+{
+	"AccuracyMetrics":{
+		"output_folder":"../data/metrics" ,
+		"metrics":{
+			"Kolmogorov": {
+				"name": "Kolmogorov",
+				"module_name": "evaluationmetrics.kolmogorov",
+				"class_name":"Kolmogorov",
+				"params":{
+				}
+			},
+			"ROC": {
+				"name": "ROC",
+				"module_name": "evaluationmetrics.roc",
+				"class_name":"ROC",
+				"params":{}
+			},
+			"F1": {
+				"name": "F1",
+				"module_name": "evaluationmetrics.f1",
+				"class_name":"F1",
+				"params":{}
+			}
+		}
+	},
+	"SilicoData":{
+		"num_genes":10000,
+		"num_experiments":100,
+		"num_pfs":100
+	},
+	"SilicoGenerators":{
+		"silico.linear":{
+			"source": "silico_linear",
+			"module_name": "silico.generators.linear",
+			"class_name":"LinearDataGenerator",
+			"params": {
+						"diff_factor":3.0,
+						"noise_factor":0.5,
+						"num_replicates":3
+			}
+		}
+	},
+	"Benchmark":{
+		"method_groups":
+			{
+				"classic":{
+					"name":"Transcription factor benchmark [classic]",
+					"methods":[
+						"TTest",
+						"LIMMA",
+						"SAM",
+						"Random",
+						"Characteristic direction py"
+					]
+				},
+				"original_neural":{
+					"name":"Transcription factor benchmark [original neural]",
+					"methods":[
+						"MIDGET Neural[n1]",
+						"MIDGET Neural[n2]",
+						"MIDGET Neural[n3]",
+						"MIDGET Neural[n4]",
+						"MIDGET Neural[n5]",
+						"MIDGET Neural[n6]"
+					]
+				},
+				"original_xgb":{
+					"name":"Transcription factor benchmark [original xgb]",
+					"methods":[
+						"MIDGET XGB[xgb1]",
+						"MIDGET XGB[xgb2]"
+					]
+				},
+				"best_methods":{
+					"name":"Transcription factor benchmark [original xgb]",
+					"methods":[
+						"Characteristic direction py",
+						"MIDGET XGB[xgb2]",
+						"MIDGET Neural[n2]",
+						"MIDGET Neural[n3]",
+						"LIMMA",
+						"TTest"
+					]
+				}
+		},
+		"runs": [
+			{
+				"name":"Silico",
+				"data_sources":["silico_linear"],
+				"validation_sets":["silico"],
+				"method_group_ids":[ "classic","original_neural","original_xgb", "best_methods"]
+			},
+			{
+				"name":"Transcription Factor",
+				"data_sources":["tf_perturbations"],
+				"validation_sets":[
+					"tf_encode",
+					"tf_chea",
+					"pp_interaction",
+					"ppis_study",
+					"all"],
+				"method_group_ids":[ "classic","original_neural","original_xgb","best_methods"]
+			},
+			{
+				"name":"Drugs Gene Interaction",
+				"data_sources":["drug_perturbations"],
+				"validation_sets":["drug_gene_interaction"],
+				"method_group_ids":[ "classic","original_neural","original_xgb", "best_methods"]
+			}
+			
+		]
+	},
+	"Methods":{
+		"TTest":{
+			"module_name":"diffmethods.ttest",
+			"class_name":"TTest",
+			"config":{}
+		},
+		"LIMMA":{
+			"module_name":"diffmethods.limma",
+			"class_name":"LIMMA",
+			"config":{}
+		},
+		"SAM":{
+			"module_name":"diffmethods.sam",
+			"class_name":"SAM",
+			"config":{}
+		},
+		"Random":{
+			"module_name":"diffmethods.random",
+			"class_name":"Random",
+			"config": {}
+		},
+		"Characteristic direction py":{
+			"module_name":"diffmethods.chdirpy",
+			"class_name":"ChDirPy",
+			"config":{}
+		},
+		"MIDGET Neural[n1]":{
+			"module_name":"diffmethods.MIDGET.neural",
+			"class_name":"MIDGETNeural",
+			"config": {
+				"data_split": 0.25,
+				"method_name":"",
+				"batch_size": 40000,
+				"test_size": 40000,
+				"number_of_epochs": 1000,
+				"save_point_num_batches": 10,
+				"model_name": "n1",
+				"output_folder":"../data/MIDGETNeural" ,
+				"feature_file":"features.pkl"
+			}
+		},
+		"MIDGET Neural[n2]":{
+			"module_name":"diffmethods.MIDGET.neural",
+			"class_name":"MIDGETNeural",
+			"config": {
+				"data_split": 0.25,
+				"method_name":"",
+				"batch_size": 40000,
+				"test_size": 40000,
+				"number_of_epochs": 1000,
+				"save_point_num_batches": 10,
+				"model_name": "n2",
+				"output_folder":"../data/MIDGETNeural",
+				"feature_file":"features.pkl"
+			}
+		},
+		"MIDGET Neural[n3]":{
+			"module_name":"diffmethods.MIDGET.neural",
+			"class_name":"MIDGETNeural",
+			"config": {
+				"data_split": 0.25,
+				"method_name":"",
+				"batch_size": 40000,
+				"test_size": 40000,
+				"number_of_epochs": 1000,
+				"save_point_num_batches": 10,
+				"model_name": "n3",
+				"output_folder":"../data/MIDGETNeural",
+				"feature_file":"features.pkl"
+			}
+		},
+		"MIDGET Neural[n4]":{
+			"module_name":"diffmethods.MIDGET.neural",
+			"class_name":"MIDGETNeural",
+			"config": {
+				"data_split": 0.25,
+				"method_name":"",
+				"batch_size": 40000,
+				"test_size": 40000,
+				"number_of_epochs": 1000,
+				"save_point_num_batches": 10,
+				"model_name": "n4",
+				"output_folder":"../data/MIDGETNeural",
+				"feature_file":"features.pkl"
+			}
+		},
+		"MIDGET Neural[n5]":{
+			"module_name":"diffmethods.MIDGET.neural",
+			"class_name":"MIDGETNeural",
+			"config": {
+				"data_split": 0.25,
+				"method_name":"",
+				"batch_size": 40000,
+				"test_size": 40000,
+				"number_of_epochs": 1000,
+				"save_point_num_batches": 10,
+				"model_name": "n5",
+				"output_folder":"../data/MIDGETNeural",
+				"feature_file":"features.pkl"
+			}
+		},
+		"MIDGET Neural[n6]":{
+			"module_name":"diffmethods.MIDGET.neural",
+			"class_name":"MIDGETNeural",
+			"config": {
+				"data_split": 0.25,
+				"method_name":"",
+				"batch_size": 40000,
+				"test_size": 40000,
+				"number_of_epochs": 1000,
+				"save_point_num_batches": 10,
+				"model_name": "n6",
+				"output_folder":"../data/MIDGETNeural",
+				"feature_file":"features.pkl"
+			}
+		},
+		"MIDGET XGB[xgb1]":{
+			"module_name":"diffmethods.MIDGET.xgb",
+			"class_name":"MIDGETXgBoost",
+			"config": {
+				"feature_file":"features.pkl",
+				"data_split": 0.25,
+				"num_round": 1000,
+				"model_name": "xgb1",
+				"model_folder": "../data/MIDGETXGB",
+				"param": {
+					"verbosity": 2,
+					"nthread": 8,
+					"max_depth":6, 
+					"eta":0.2, 
+					"objective":"binary:logistic"
+				}
+			}
+		},
+		"MIDGET XGB[xgb2]":{
+			"module_name":"diffmethods.MIDGET.xgb",
+			"class_name":"MIDGETXgBoost",
+			"config": {
+				"feature_file":"features.pkl",
+				"data_split": 0.25,
+				"num_round": 1000,
+				"model_name": "xgb2",
+				"model_folder": "../data/MIDGETXGB",
+				"param":{
+					"verbosity": 2,
+					"nthread": 8,
+					"max_depth":12, 
+					"lambda": 0.7,
+					"eta":0.2, 
+					"objective":"binary:logistic"
+				}
+			}
+		}
+	},
+	"Storage":{
+		"providers":{
+			"mongo": {
+				"host":"localhost",
+				"port":27017,
+				"anon":true,
+				"user":"drakera",
+				"password":"surasulfeteidintramvaim-afermecatdefinitiv",
+				"database_name":"gene_expression_test",
+				"validation_collection_name":"validation",
+				"geo_data_collection_name":"geo",
+				"results_collection_name":"results"
+			},
+			"filesystem": {
+				"base_path":"../data/db_test",
+				"validation_folder":"validation",
+				"geo_folder": "geo",
+				"results_folder": "results"
+			}
+		},
+		"load_order":[
+			"filesystem",
+			"mongo"
+		]
+	},
+	"GEOImporter":{
+		"data_path":"../data",
+		"download_retry_count": 10,
+		"download_wait_seconds_before_retry": 5,
+		"geo_cache_folder_name":"cache",
+		"input_data":[
+		 	{
+				"pf_field": "tf",
+				"name":"tf_perturbations",
+				"file":"GEOdatasets_tf_perturbations.json"
+	 		},
+	 		{
+				"pf_field": "drug",
+		 		"name":"drug_perturbations",
+		 		"file":"GEOdatasets_drugs_perturbations.json"
+	 		}
+		],
+		"labeling":
+		{
+			"control":["control","Control", "wild type", "wildtype","Wild Type","Wildtype","wild-type","baseline", "control virus","uninduced", "untreated", "0 pM", "water", "Time of treatment 0 weeks", "none","pretreatment", "vehicle", "control virus"],
+			"type":["genotype/variation","disease state", "protocol","growth protocol","dose", "agent", "description", "time"],
+			"gene_names":"IDENTIFIER",
+			"no_column_control":["MCF7/BUS, 0 pM","baseline", "minus", "Resistant", "untreated", "Untreated", "Control", "control", "nonresponder", "resistant", "vehicle", "saline","0 pM E2","DMS", "AO ", " AG", "_Veh_","N1+2","N3+4","N5+6"],
+			"no_column_title": "title",
+			"no_column_accession": "geo_accession"
+		}
+	},
+	"ValidationDataImporter":{
+		"base_path":"../data/validation_sources",
+		"sources":{
+			"ENCODE":{
+				"data_file":"encode_gene_attribute_matrix.txt",
+				"dict_file":"encode_attribute_list_entries.txt"
+			},
+			"CHEA":{
+				"data_file":"chea_gene_attribute_matrix.txt",
+				"dict_file":"chea_attribute_list_entries.txt"
+			},
+			"PP INTERACTION":{
+				"data_file":"PPI_interaction.tsv"
+			},
+			"PPI STUDY":{
+				"data_file":"PPI_transcription_factors.txt"
+			},
+			"DRUG GENE INTERACTION":{
+				"data_file":"drug_gene_interaction_db.tsv"
+			}
+
+		}
+	}
+}
