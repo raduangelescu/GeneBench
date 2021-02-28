@@ -11,16 +11,16 @@ Besides being a benchmarking framework it also contains some commonly used Diffe
   - [T-Test](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html)
   - [SAM](https://cran.r-project.org/web/packages/samr/index.html)
 Our own methods based on machine learning:
-  - MIDGET-xgb (2 variations)
-  - MIDGET-neural (6 variations)
+  - **MIDGET-xgb** (2 variations)
+  - **MIDGET-neural** (6 variations)
 and a baseline random algorithm.
 
 The framework also provides a base for calling methods from R (because most medical laboratories use R for statistical analysis). 
 
 We provide already implemented evaluation metrics:
- - Kolmogorov based visual evaluation
- - F1 score
- - ROC/AUC curve analysis
+ - **Kolmogorov** based visual evaluation
+ - **F1** score
+ - **ROC/AUC** curve analysis
 
 Storage providers:
  - [mongodb](https://www.mongodb.com/) usefull for sharing amongst resourcers and fully configurable 
@@ -35,15 +35,19 @@ You can also provide your own implementations for
  - storage providers
 
 You may configure any combination of evaluation metrics, storage providers, silico data generators and methods for your analysis and benchmark.
+**Note 0** Please cites this framework in your papers if you plan to use it.
+**Note 1** The package was tested on Linux Ubuntu 20.0. It should work in Windows too but you need to install dependencies with the normal installers. 
+**Note 2** If you want good performance in evaluating MIDGET Neural methods we advise you use a GPU with CUDA suport and [do the necessary steps to activate it with tensor flow](https://www.tensorflow.org/install/gpu)
+
 ## Installation
 Install using pip 
-```
+```bashs
 pip install genebench
 ```
 
 or install latest from github
 
-```
+```bash
 git clone https://github.com/raduangelescu/GeneBench.git
 python setup.py install
 
@@ -51,10 +55,19 @@ python setup.py install
 
 ## Usage
 The most important thing to note is that you need to have a correct config json file that describes what you are trying to do. The next sections will explain the code and config needed to access the framework features.
-For easy usage, you may find the below examples in [this folder](https://github.com/raduangelescu/GeneBench/tree/main/genebench/examples)
+For easy usage, you may find the below examples in [this folder](https://github.com/raduangelescu/GeneBench/tree/main/examples)
 
 ### Quick start
 To get the default working you only need to install the package.
+- [Install MongoDb](https://docs.mongodb.com/manual/installation/)
+```bash
+wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+sudo apt-get install gnupg
+wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+```
 - Install R for the R-based methods (SAM, Limma)
 ```bash
 sudo apt install r-base
