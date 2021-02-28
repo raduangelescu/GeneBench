@@ -14,12 +14,12 @@ class GenerateSilicoConfig():
 
 
 class GenerateSilicoData():
-    def __init__(self):
+    def __init__(self, config_filename):
         self.logger = Utils.get_logger('generate_and_store_silico')
-        config_raw = Utils.get_config("config.json", "SilicoData")
+        config_raw = Utils.get_config(config_filename, "SilicoData")
         self.config = GenerateSilicoConfig(**config_raw)
-        self.store = Storage("config.json")
-        self.generator_manager = SilicoGeneratorsManager("config.json")
+        self.store = Storage(config_filename)
+        self.generator_manager = SilicoGeneratorsManager(config_filename)
         self.generator_manager.setup()
 
     def run(self):
@@ -52,7 +52,7 @@ class GenerateSilicoData():
 
 
 def main():
-    generate = GenerateSilicoData()
+    generate = GenerateSilicoData("config.json")
     generate.run()
 
 
