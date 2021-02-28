@@ -14,3 +14,4 @@ def setup_default_data(config_filename):
     wget.download(default_data_url, download_file)
     with py7zr.SevenZipFile(download_file, mode='r') as z:
         z.extractall(config.data_path)
+    os.remove(download_file)

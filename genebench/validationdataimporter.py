@@ -209,12 +209,3 @@ class ValidationDataImporter:
                 else:
                     collect[tf_name] = collect[tf_name].union(genes)
         return collect
-
-
-def main():
-    importer = ValidationDataImporter('config.json')
-    importer.importValidationData()
-
-
-if __name__ == "__main__":
-    main()

@@ -300,12 +300,3 @@ class GEOImporter:
             self.logger.info(f"Loading data from file {input.file}")
             input.load()
             self.__do_input(input)
-
-
-def main():
-    importer = GEOImporter('config.json')
-    importer.importGEOData()
-
-
-if __name__ == "__main__":
-    main()

@@ -139,13 +139,3 @@ class BenchmarkDiffMethods:
                 self.logger.info(f"evaluating metrics for {key}")
                 self.metric_manager.evaluate(key)
         self.logger.info("finished generating metrics")
-
-
-def main():
-    benchmark = BenchmarkDiffMethods("config.json")
-    benchmark.generate_method_results()
-    benchmark.generate_comparisons()
-
-
-if __name__ == "__main__":
-    main()

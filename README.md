@@ -1,6 +1,6 @@
 ![Image logo](https://raw.githubusercontent.com/raduangelescu/GeneBench/main/logo.svg)
 
-##Overview
+## Overview
 
 Gene Bench is a benchmark-ing framework used in analyzing methods that detect differentially expressed genes from biological samples.
 Besides being a benchmarking framework it also contains some commonly used Differential genes detection algorithms:
@@ -51,36 +51,68 @@ python setup.py install
 
 ## Usage
 The most important thing to note is that you need to have a correct config json file that describes what you are trying to do. The next sections will explain the code and config needed to access the framework features.
+For easy usage, you may find the below examples in [this folder](https://github.com/raduangelescu/GeneBench/tree/main/genebench/examples)
 
+### Quick start
+To get the default working you only need to install the package.
+- Install R for the R-based methods (SAM, Limma)
+```bash
+sudo apt install r-base
+```
+
+-  Open R and Install packages
+	- [Install Bioconductor](https://www.bioconductor.org/install/)
+
+	```r
+ 		install.packages("BiocManager")
+	```
+
+	- [Install LIMMA in R](https://bioconductor.org/packages/release/bioc/html/limma.html)
+	```r
+   		BiocManager::install("limma")
+	```
+	- [Install SAM in R and impute](http://www.sthda.com/english/articles/2-r/1-install-samr-package/)
+	```r
+		install.packages('samr')
+		source("http://bioconductor.org/biocLite.R")
+		biocLite("impute")
+	```
+- Copy "config.json" into your project folder
+- make a folder named "data"  in your project folder
+- Run startup function
+```python
+from genebench.startup import setup_default_data
+setup_default_data("config.json") 
+```
 ### Storage config
 Any benchmark run via this framework needs storage. You may use any of the storage providers implemented in the framework, or both. 
 The config file needs the **"Storage"** section in order to know how you will set and read the data. The below config is an example of using both providers.
-```
-	"Storage":{
-		"providers":{
-			"mongo": {
-				"host":"insert the ip of your mongodb server here",
-				"port": 27017,
-				"anon":true, -> set this to true if you have anonymous login
-				"user":"username for mongodb",
-				"password":"password for mongodb",
-				"database_name":"your database name",
-				"validation_collection_name":"the validation collection name",
-				"geo_data_collection_name":"geo data collection name",
-				"results_collection_name":"results collection name"
-			},
-			"filesystem": {
-				"base_path":"base folder for storing all info that must exist in filesystem", 
-				"validation_folder":"the validation folder name",
-				"geo_folder": "geo folder name",
-				"results_folder": "results folder name"
-			}
+```json
+"Storage":{
+	"providers":{
+		"mongo": {
+			"host":"localhost",
+			"port":27017,
+			"anon":true,
+			"user":"",
+			"password":"",
+			"database_name":"gene_expression_bench_test",
+			"validation_collection_name":"validation",
+			"geo_data_collection_name":"geo",
+			"results_collection_name":"results"
 		},
-		"load_order":[ -> order in which system searches for data
-			"filesystem",
-			"mongo"
-		]
+		"filesystem": {
+			"base_path":"data/db_test",
+			"validation_folder":"validation",
+			"geo_folder": "geo",
+			"results_folder": "results"
+		}
 	},
+	"load_order":[
+		"filesystem",
+		"mongo"
+	]
+}
 ```
 If you only need to use one provider just remove the other from the above config form "providers" and "load_order". In most cases, when you don't have any mongodb installed you will probably only want to use the filesystem provider which should work locally.
 
@@ -88,28 +120,29 @@ If you only need to use one provider just remove the other from the above config
 The silico data generator tries to mimick a biological experiment: it will generate fake genes and fake perturbation factors and then create links between them. Based on the above biological network it will use silico providers to generate the fake data.
 
 To generate the silico data you need to have the **"SilicoData"** and **"SilicoGenerators"** config sections in your config.json file
-```
-	"SilicoData":{
-		"num_genes":10000, -> number of genes in experiments
-		"num_experiments":100, -> number of experiments
-		"num_pfs":100 -> number of perturbation factors
-	},
-	"SilicoGenerators":{
-		"silico.linear":{ -> add an entry for every silico data generator
-			"source": "silico_linear", -> name of the generator source for later identification
-			"module_name": "genebench.silico.generators.linear", -> module name from which to import the generator
-			"class_name":"LinearDataGenerator", -> the generator class name
-			"params": { -> custom generator parameters
-						"diff_factor":3.0,
-						"noise_factor":0.5,
-						"num_replicates":3
-			}
+```json
+"SilicoData":{
+	"num_genes":10000,
+	"num_experiments":100,
+	"num_pfs":100
+},
+"SilicoGenerators":{
+	"silico.linear":{
+		"source": "silico_linear",
+		"module_name": "genebench.silico.generators.linear",
+		"class_name":"LinearDataGenerator",
+		"params": {
+					"diff_factor":3.0,
+					"noise_factor":0.5,
+					"num_replicates":3
 		}
-	},
+	}
+}
 ```
 
 After providing the correct config file you only need to run the below code:
-```
+```python
+# examples/silicotest.py 
 from genebench.generatesilico import GenerateSilicoData
 
 generate = GenerateSilicoData("config.json")
@@ -121,38 +154,41 @@ The generator run will populate the data in the storage provider. The data itsel
 ### Importing in vivo GEO data
 
 For this feature you need the **GEOImporter** section in the config file:
-```
-	"GEOImporter":{
-		"data_path":"../data", -> base folder to store temp data
-		"download_retry_count": 10, -> retry download 10 times before failing (sometimes GEO will fail because of overload)
-		"download_wait_seconds_before_retry": 5, -> if GEO download fails, wait 5 seconds
-		"geo_cache_folder_name":"cache", -> the folder to store the cache 
-		"input_data":[
-		 	{
-				"pf_field": "tf", -> field than marks the perturbation factor
-				"name":"tf_perturbations", -> source name in storage
-				"file":"GEOdatasets_tf_perturbations.json" -> input file with hand picked GEO experiments
-	 		},
-	 		{
-				"pf_field": "drug",
-		 		"name":"drug_perturbations",
-		 		"file":"GEOdatasets_drugs_perturbations.json"
-	 		}
-		],
-		"labeling": -> this is used to automatically filter GEO data in control/perturbation categories
+Modifying the "labeling" section is not advised, and only required if you want to add new GEO data and filter it automatically.
+To add new GEO input data you may create files similarly to **GEOdatasets_tf_perturbations.json** and add them into the input_data field, more details will be provided in the full documentation.
+```json
+"GEOImporter":{
+	"data_path":"data",
+	"download_retry_count": 10,
+	"download_wait_seconds_before_retry": 5,
+	"geo_cache_folder_name":"cache",
+	"input_data":[
 		{
-			"control":["control","Control", "wild type", "wildtype","Wild Type","Wildtype","wild-type","baseline", "control virus","uninduced", "untreated", "0 pM", "water", "Time of treatment 0 weeks", "none","pretreatment", "vehicle", "control virus"],
-			"type":["genotype/variation","disease state", "protocol","growth protocol","dose", "agent", "description", "time"],
-			"gene_names":"IDENTIFIER",
-			"no_column_control":["MCF7/BUS, 0 pM","baseline", "minus", "Resistant", "untreated", "Untreated", "Control", "control", "nonresponder", "resistant", "vehicle", "saline","0 pM E2","DMS", "AO ", " AG", "_Veh_","N1+2","N3+4","N5+6"],
-			"no_column_title": "title",
-			"no_column_accession": "geo_accession"
+			"pf_field": "tf",
+			"name":"tf_perturbations",
+			"file":"data/default_experiments/GEOdatasets_tf_perturbations.json"
+		},
+		{
+			"pf_field": "drug",
+			"name":"drug_perturbations",
+			"file":"data/default_experiments/GEOdatasets_drugs_perturbations.json"
 		}
-	},
+	],
+	"labeling":
+	{
+		"control":["control","Control", "wild type", "wildtype","Wild Type","Wildtype","wild-type","baseline", "control virus","uninduced", "untreated", "0 pM", "water", "Time of treatment 0 weeks", "none","pretreatment", "vehicle", "control virus"],
+		"type":["genotype/variation","disease state", "protocol","growth protocol","dose", "agent", "description", "time"],
+		"gene_names":"IDENTIFIER",
+		"no_column_control":["MCF7/BUS, 0 pM","baseline", "minus", "Resistant", "untreated", "Untreated", "Control", "control", "nonresponder", "resistant", "vehicle", "saline","0 pM E2","DMS", "AO ", " AG", "_Veh_","N1+2","N3+4","N5+6"],
+		"no_column_title": "title",
+		"no_column_accession": "geo_accession"
+	}
+}
 ```
 It is usually the case that you will not modify this config in a normal run so you can paste it from above, removing comments.
 To generate and store the experiment data you just run the below code, using whatever file-name your config is to replace 'config.json'.
-```
+```python
+# examples/importgeodata.py
 from genebench.geoimporter import GEOImporter
 importer = GEOImporter('config.json')
 importer.importGEOData()
@@ -162,34 +198,36 @@ importer.importGEOData()
 To be able to test if the methods you create/benchmark are better on the set of data, we need to have some validation data. To do this we provided multiple validation sources and a way to import them. 
 The config section needed for this feature is **"ValidationDataImporter"**
 
-```
-	"ValidationDataImporter":{
-		"base_path":"../data/validation_sources",
-		"sources":{
-			"ENCODE":{
-				"data_file":"encode_gene_attribute_matrix.txt",
-				"dict_file":"encode_attribute_list_entries.txt"
-			},
-			"CHEA":{
-				"data_file":"chea_gene_attribute_matrix.txt",
-				"dict_file":"chea_attribute_list_entries.txt"
-			},
-			"PP INTERACTION":{
-				"data_file":"PPI_interaction.tsv"
-			},
-			"PPI STUDY":{
-				"data_file":"PPI_transcription_factors.txt"
-			},
-			"DRUG GENE INTERACTION":{
-				"data_file":"drug_gene_interaction_db.tsv"
-			}
-
+```json
+"ValidationDataImporter":{
+	"base_path":"data/validation_sources",
+	"sources":{
+		"ENCODE":{
+			"data_file":"encode_gene_attribute_matrix.txt",
+			"dict_file":"encode_attribute_list_entries.txt"
+		},
+		"CHEA":{
+			"data_file":"chea_gene_attribute_matrix.txt",
+			"dict_file":"chea_attribute_list_entries.txt"
+		},
+		"PP INTERACTION":{
+			"data_file":"PPI_interaction.tsv"
+		},
+		"PPI STUDY":{
+			"data_file":"PPI_transcription_factors.txt"
+		},
+		"DRUG GENE INTERACTION":{
+			"data_file":"drug_gene_interaction_db.tsv"
 		}
+
+	}
+}
 ```
 
 And the coded to import the data:
 
-```
+```python
+# examples/importvalidationdata.py
 from genebench.validationdataimporter import ValidationDataImporter
 importer = ValidationDataImporter('config.json')
 importer.importValidationData()
@@ -198,314 +236,466 @@ importer.importValidationData()
 ### Running benchmarks
 After you have all your validation and experiment data in your storage providers (general format) you will now configure the benchmarks you want to run via the **"AccuracyMetrics"**, **"Methods"** and **"Benchmark"** config sections:
 - In **AccuracyMetrics** we configure the metrics we want to generate for all benchmarks. Below we provide an example for using the default provided ones
-```
+```json
 "AccuracyMetrics":{
-    "output_folder":"../data/metrics" ,
-    "metrics":{
-        "Kolmogorov": {
-            "name": "Kolmogorov",
-            "module_name": "evaluationmetrics.kolmogorov",
-            "class_name":"Kolmogorov",
-            "params":{
-            }
-        },
-        "ROC": {
-            "name": "ROC",
-            "module_name": "evaluationmetrics.roc",
-            "class_name":"ROC",
-            "params":{}
-        },
-        "F1": {
-            "name": "F1",
-            "module_name": "evaluationmetrics.f1",
-            "class_name":"F1",
-            "params":{}
-        }
-    }
-},
+	"output_folder":"data/metrics" ,
+	"metrics":{
+		"Kolmogorov": {
+			"name": "Kolmogorov",
+			"module_name": "genebench.evaluationmetrics.kolmogorov",
+			"class_name":"Kolmogorov",
+			"params":{
+			}
+		},
+		"ROC": {
+			"name": "ROC",
+			"module_name": "genebench.evaluationmetrics.roc",
+			"class_name":"ROC",
+			"params":{}
+		},
+		"F1": {
+			"name": "F1",
+			"module_name": "genebench.evaluationmetrics.f1",
+			"class_name":"F1",
+			"params":{}
+		}
+	}
+}
 ```
 -  In **Methods** we add all the methods we want to use for benchmarking: Each entry has: a key by which the program will address the code, module_name: the module in which the method relies, class_name: the actual method class name and a custom config field so you can use parameters in your own method implementation. Below we provide a config that accounts for all our currently supported methods:
-```
-	"Methods":{
-		"TTest":{
-			"module_name":"diffmethods.ttest",
-			"class_name":"TTest",
-			"config":{}
-		},
-		"LIMMA":{
-			"module_name":"diffmethods.limma",
-			"class_name":"LIMMA",
-			"config":{}
-		},
-		"SAM":{
-			"module_name":"diffmethods.sam",
-			"class_name":"SAM",
-			"config":{}
-		},
-		"Random":{
-			"module_name":"diffmethods.random",
-			"class_name":"Random",
-			"config": {}
-		},
-		"Characteristic direction py":{
-			"module_name":"diffmethods.chdirpy",
-			"class_name":"ChDirPy",
-			"config":{}
-		},
-		"MIDGET Neural[n1]":{
-			"module_name":"diffmethods.MIDGET.neural",
-			"class_name":"MIDGETNeural",
-			"config": {
-				"data_split": 0.25,
-				"method_name":"",
-				"batch_size": 40000,
-				"test_size": 40000,
-				"number_of_epochs": 1000,
-				"save_point_num_batches": 10,
-				"model_name": "n1",
-				"output_folder":"../data/MIDGETNeural" ,
-				"feature_file":"features.pkl"
-			}
-		},
-		"MIDGET Neural[n2]":{
-			"module_name":"diffmethods.MIDGET.neural",
-			"class_name":"MIDGETNeural",
-			"config": {
-				"data_split": 0.25,
-				"method_name":"",
-				"batch_size": 40000,
-				"test_size": 40000,
-				"number_of_epochs": 1000,
-				"save_point_num_batches": 10,
-				"model_name": "n2",
-				"output_folder":"../data/MIDGETNeural",
-				"feature_file":"features.pkl"
-			}
-		},
-		"MIDGET Neural[n3]":{
-			"module_name":"diffmethods.MIDGET.neural",
-			"class_name":"MIDGETNeural",
-			"config": {
-				"data_split": 0.25,
-				"method_name":"",
-				"batch_size": 40000,
-				"test_size": 40000,
-				"number_of_epochs": 1000,
-				"save_point_num_batches": 10,
-				"model_name": "n3",
-				"output_folder":"../data/MIDGETNeural",
-				"feature_file":"features.pkl"
-			}
-		},
-		"MIDGET Neural[n4]":{
-			"module_name":"diffmethods.MIDGET.neural",
-			"class_name":"MIDGETNeural",
-			"config": {
-				"data_split": 0.25,
-				"method_name":"",
-				"batch_size": 40000,
-				"test_size": 40000,
-				"number_of_epochs": 1000,
-				"save_point_num_batches": 10,
-				"model_name": "n4",
-				"output_folder":"../data/MIDGETNeural",
-				"feature_file":"features.pkl"
-			}
-		},
-		"MIDGET Neural[n5]":{
-			"module_name":"diffmethods.MIDGET.neural",
-			"class_name":"MIDGETNeural",
-			"config": {
-				"data_split": 0.25,
-				"method_name":"",
-				"batch_size": 40000,
-				"test_size": 40000,
-				"number_of_epochs": 1000,
-				"save_point_num_batches": 10,
-				"model_name": "n5",
-				"output_folder":"../data/MIDGETNeural",
-				"feature_file":"features.pkl"
-			}
-		},
-		"MIDGET Neural[n6]":{
-			"module_name":"diffmethods.MIDGET.neural",
-			"class_name":"MIDGETNeural",
-			"config": {
-				"data_split": 0.25,
-				"method_name":"",
-				"batch_size": 40000,
-				"test_size": 40000,
-				"number_of_epochs": 1000,
-				"save_point_num_batches": 10,
-				"model_name": "n6",
-				"output_folder":"../data/MIDGETNeural",
-				"feature_file":"features.pkl"
-			}
-		},
-		"MIDGET XGB[xgb1]":{
-			"module_name":"diffmethods.MIDGET.xgb",
-			"class_name":"MIDGETXgBoost",
-			"config": {
-				"feature_file":"features.pkl",
-				"data_split": 0.25,
-				"num_round": 1000,
-				"model_name": "xgb1",
-				"model_folder": "../data/MIDGETXGB",
-				"param": {
-					"verbosity": 2,
-					"nthread": 8,
-					"max_depth":6, 
-					"eta":0.2, 
-					"objective":"binary:logistic"
-				}
-			}
-		},
-		"MIDGET XGB[xgb2]":{
-			"module_name":"diffmethods.MIDGET.xgb",
-			"class_name":"MIDGETXgBoost",
-			"config": {
-				"feature_file":"features.pkl",
-				"data_split": 0.25,
-				"num_round": 1000,
-				"model_name": "xgb2",
-				"model_folder": "../data/MIDGETXGB",
-				"param":{
-					"verbosity": 2,
-					"nthread": 8,
-					"max_depth":12, 
-					"lambda": 0.7,
-					"eta":0.2, 
-					"objective":"binary:logistic"
-				}
+```json
+"Methods":{
+	"TTest":{
+		"module_name":"genebench.diffmethods.ttest",
+		"class_name":"TTest",
+		"config":{}
+	},
+	"LIMMA":{
+		"module_name":"genebench.diffmethods.limma",
+		"class_name":"LIMMA",
+		"config":{}
+	},
+	"SAM":{
+		"module_name":"genebench.diffmethods.sam",
+		"class_name":"SAM",
+		"config":{}
+	},
+	"Random":{
+		"module_name":"genebench.diffmethods.random",
+		"class_name":"Random",
+		"config": {}
+	},
+	"Characteristic direction py":{
+		"module_name":"genebench.diffmethods.chdirpy",
+		"class_name":"ChDirPy",
+		"config":{}
+	},
+	"MIDGET Neural[n1]":{
+		"module_name":"genebench.diffmethods.MIDGET.neural",
+		"class_name":"MIDGETNeural",
+		"config": {
+			"data_split": 0.25,
+			"method_name":"",
+			"batch_size": 40000,
+			"test_size": 40000,
+			"number_of_epochs": 1000,
+			"save_point_num_batches": 10,
+			"model_name": "n1",
+			"output_folder":"data/MIDGETNeural" ,
+			"feature_file":"features.pkl"
+		}
+	},
+	"MIDGET Neural[n2]":{
+		"module_name":"genebench.diffmethods.MIDGET.neural",
+		"class_name":"MIDGETNeural",
+		"config": {
+			"data_split": 0.25,
+			"method_name":"",
+			"batch_size": 40000,
+			"test_size": 40000,
+			"number_of_epochs": 1000,
+			"save_point_num_batches": 10,
+			"model_name": "n2",
+			"output_folder":"data/MIDGETNeural",
+			"feature_file":"features.pkl"
+		}
+	},
+	"MIDGET Neural[n3]":{
+		"module_name":"genebench.diffmethods.MIDGET.neural",
+		"class_name":"MIDGETNeural",
+		"config": {
+			"data_split": 0.25,
+			"method_name":"",
+			"batch_size": 40000,
+			"test_size": 40000,
+			"number_of_epochs": 1000,
+			"save_point_num_batches": 10,
+			"model_name": "n3",
+			"output_folder":"data/MIDGETNeural",
+			"feature_file":"features.pkl"
+		}
+	},
+	"MIDGET Neural[n4]":{
+		"module_name":"genebench.diffmethods.MIDGET.neural",
+		"class_name":"MIDGETNeural",
+		"config": {
+			"data_split": 0.25,
+			"method_name":"",
+			"batch_size": 40000,
+			"test_size": 40000,
+			"number_of_epochs": 1000,
+			"save_point_num_batches": 10,
+			"model_name": "n4",
+			"output_folder":"data/MIDGETNeural",
+			"feature_file":"features.pkl"
+		}
+	},
+	"MIDGET Neural[n5]":{
+		"module_name":"genebench.diffmethods.MIDGET.neural",
+		"class_name":"MIDGETNeural",
+		"config": {
+			"data_split": 0.25,
+			"method_name":"",
+			"batch_size": 40000,
+			"test_size": 40000,
+			"number_of_epochs": 1000,
+			"save_point_num_batches": 10,
+			"model_name": "n5",
+			"output_folder":"data/MIDGETNeural",
+			"feature_file":"features.pkl"
+		}
+	},
+	"MIDGET Neural[n6]":{
+		"module_name":"genebench.diffmethods.MIDGET.neural",
+		"class_name":"MIDGETNeural",
+		"config": {
+			"data_split": 0.25,
+			"method_name":"",
+			"batch_size": 40000,
+			"test_size": 40000,
+			"number_of_epochs": 1000,
+			"save_point_num_batches": 10,
+			"model_name": "n6",
+			"output_folder":"data/MIDGETNeural",
+			"feature_file":"features.pkl"
+		}
+	},
+	"MIDGET XGB[xgb1]":{
+		"module_name":"genebench.diffmethods.MIDGET.xgb",
+		"class_name":"MIDGETXgBoost",
+		"config": {
+			"feature_file":"features.pkl",
+			"data_split": 0.25,
+			"num_round": 1000,
+			"model_name": "xgb1",
+			"model_folder": "data/MIDGETXGB",
+			"param": {
+				"verbosity": 2,
+				"nthread": 8,
+				"max_depth":6, 
+				"eta":0.2, 
+				"objective":"binary:logistic"
 			}
 		}
 	},
+	"MIDGET XGB[xgb2]":{
+		"module_name":"genebench.diffmethods.MIDGET.xgb",
+		"class_name":"MIDGETXgBoost",
+		"config": {
+			"feature_file":"features.pkl",
+			"data_split": 0.25,
+			"num_round": 1000,
+			"model_name": "xgb2",
+			"model_folder": "data/MIDGETXGB",
+			"param":{
+				"verbosity": 2,
+				"nthread": 8,
+				"max_depth":12, 
+				"lambda": 0.7,
+				"eta":0.2, 
+				"objective":"binary:logistic"
+			}
+		}
+	}
+},
 ```
 - in **Benchmark** we configure the method groups for which we want to generate the benchmarks and evaluations by using the **method_groups** field. In the **runs** field we specify which validation set and data set to use with on the provided method groups. Below you may find an example config which runs tests on 4 method groups separating **silico data** from **transcription factor** data and **drug-gene data**.
-```
-	"Benchmark":{
-		"method_groups":
-			{
-				"classic":{
-					"name":"Transcription factor benchmark [classic]",
-					"methods":[
-						"TTest",
-						"LIMMA",
-						"SAM",
-						"Random",
-						"Characteristic direction py"
-					]
-				},
-				"original_neural":{
-					"name":"Transcription factor benchmark [original neural]",
-					"methods":[
-						"MIDGET Neural[n1]",
-						"MIDGET Neural[n2]",
-						"MIDGET Neural[n3]",
-						"MIDGET Neural[n4]",
-						"MIDGET Neural[n5]",
-						"MIDGET Neural[n6]"
-					]
-				},
-				"original_xgb":{
-					"name":"Transcription factor benchmark [original xgb]",
-					"methods":[
-						"MIDGET XGB[xgb1]",
-						"MIDGET XGB[xgb2]"
-					]
-				},
-				"best_methods":{
-					"name":"Transcription factor benchmark [original xgb]",
-					"methods":[
-						"Characteristic direction py",
-						"MIDGET XGB[xgb2]",
-						"MIDGET Neural[n2]",
-						"MIDGET Neural[n3]",
-						"LIMMA",
-						"TTest"
-					]
-				}
-		},
-		"runs": [
-			{
-				"name":"Silico",
-				"data_sources":["silico_linear"],
-				"validation_sets":["silico"],
-				"method_group_ids":[ "classic","original_neural","original_xgb", "best_methods"]
+```json
+"Benchmark":{
+	"method_groups":
+		{
+			"classic":{
+				"name":"Transcription factor benchmark [classic]",
+				"methods":[
+					"TTest",
+					"LIMMA",
+					"SAM",
+					"Random",
+					"Characteristic direction py"
+				]
 			},
-			{
-				"name":"Transcription Factor",
-				"data_sources":["tf_perturbations"],
-				"validation_sets":[
-					"tf_encode",
-					"tf_chea",
-					"pp_interaction",
-					"ppis_study",
-					"all"],
-				"method_group_ids":[ "classic","original_neural","original_xgb","best_methods"]
+			"original_neural":{
+				"name":"Transcription factor benchmark [original neural]",
+				"methods":[
+					"MIDGET Neural[n1]",
+					"MIDGET Neural[n2]",
+					"MIDGET Neural[n3]",
+					"MIDGET Neural[n4]",
+					"MIDGET Neural[n5]",
+					"MIDGET Neural[n6]"
+				]
 			},
-			{
-				"name":"Drugs Gene Interaction",
-				"data_sources":["drug_perturbations"],
-				"validation_sets":["drug_gene_interaction"],
-				"method_group_ids":[ "classic","original_neural","original_xgb", "best_methods"]
+			"original_xgb":{
+				"name":"Transcription factor benchmark [original xgb]",
+				"methods":[
+					"MIDGET XGB[xgb1]",
+					"MIDGET XGB[xgb2]"
+				]
+			},
+			"best_methods":{
+				"name":"Transcription factor benchmark [original xgb]",
+				"methods":[
+					"Characteristic direction py",
+					"MIDGET XGB[xgb2]",
+					"MIDGET Neural[n2]",
+					"MIDGET Neural[n3]",
+					"LIMMA",
+					"TTest"
+				]
 			}
-			
-		]
 	},
+	"runs": [
+		{
+			"name":"Silico",
+			"data_sources":["silico_linear"],
+			"validation_sets":["silico"],
+			"method_group_ids":[ "classic","original_neural","original_xgb", "best_methods"]
+		},
+		{
+			"name":"Transcription Factor",
+			"data_sources":["tf_perturbations"],
+			"validation_sets":[
+				"tf_encode",
+				"tf_chea",
+				"pp_interaction",
+				"ppis_study",
+				"all"],
+			"method_group_ids":[ "classic","original_neural","original_xgb","best_methods"]
+		},
+		{
+			"name":"Drugs Gene Interaction",
+			"data_sources":["drug_perturbations"],
+			"validation_sets":["drug_gene_interaction"],
+			"method_group_ids":[ "classic","original_neural","original_xgb", "best_methods"]
+		}
+		
+	]
+}
 ```
 
 ### Providing custom implementations
 - **Custom Method**
-To use your own method with this framework you need to inherit from DiffMethod located in the diffmethods.base module, or have the following functions in your class body:
+To use your own method with this framework you need to inherit from DiffMethod located in the diffmethods.base module
 
-```
-def setup(self, config):
-    #setup code, only done once per benchmark
-    pass
+```python
+# example for a random method implementation
+import numpy as np
+from genebench.datatypes import GeneDiffInput, GeneMethodResult
+from genebench.diffmethods.base.diffmethod import DiffMethod
 
-def train(self, input: GeneDiffInput):
-    #code used for training, if necessary
-    pass
 
-def run(self, input: GeneDiffInput) -> GeneMethodResult:
-    #actual method run that receives GeneDiffInput and outputs GeneMethodResult
-    pass
+class CustomRandom(DiffMethod):
+	def setup(self, config):
+        # this code only runs once, used for configuration
+		pass
+
+    def train(self, input: GeneDiffInput):
+		# this code is used to train your method
+        pass
+
+    def run(self, input: GeneDiffInput) -> GeneMethodResult:
+		# this is the actual method
+        rankings = np.random.rand(len(input.genes))
+        genes, scores = self.sort(input.genes, rankings)
+        return GeneMethodResult.from_separate_lists(genes, scores)
   ```
 Then either add method in config specifying the correct module and class name.
 
 - **Custom Metric**
-To use your own method with this framework you need to inherit from Metric located in the evaluationmetrics.base module, or have the following functions in your class body:
+To use your own method with this framework you need to inherit from Metric located in the evaluationmetrics.base module
 
-```
-def __init__(self, output_folder):
-    pass
+```python
+# example of custom metric implementation
+from genebench.evaluationmetrics.base import Metric
+from genebench.datatypes import GeneDiffValidation, GeneMethodResult
+from genebench.utils import Utils
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import uniform
+from sklearn.metrics import f1_score
+import os
 
-def add(self,
-        pf,
-        method_name,
-        validation: GeneDiffValidation,
-        result: GeneMethodResult):
-    #function in which you collect method results
-    pass
 
-def evaluate(self, group_name):
-    #function in which you run the evaluation
-    pass
+class CustomMetric(Metric):
+
+    def __init__(self, config, output_folder):
+        self.name = "F1"
+        self.logger = Utils.get_logger("custom")
+        self.config = config
+        self.output_folder = output_folder
+        self.custom_method = {}
+        pass
+	
+	def __calculate_score(y_real, y_pred):
+		return y_real - y_pred
+
+    def add(self,
+            pf,
+            method_name,
+            validation: GeneDiffValidation,
+            result: GeneMethodResult):
+		# this method is called for each experiment
+        if validation.source not in self.custom_method:
+            self.custom_method[validation.source] = {}
+
+        custom_method = self.custom_method[validation.source]
+        pf = pf.lower()
+        self.logger.info(f"perturbation factor: {pf}")
+        # we collect all results
+        if method_name not in custom_method:
+            custom_method[method_name] = {'y': [], 'pred': []}
+
+        result_data = result.result
+        valid_data = validation.data
+        if pf not in valid_data:
+            self.logger.error(f"{pf} not found in set {validation.source}")
+            return
+
+        genes = valid_data[pf]
+        valid_genes = set([x.lower() for x in genes])
+        real_class = []
+        pred = []
+        for gene_entry in result_data:
+            gene_name = gene_entry.gene_name.lower()
+            if gene_name in valid_genes:
+                real_class.append(1)
+            else:
+                real_class.append(0)
+            if gene_entry.score >= 0.5:
+                pred.append(1)
+            else:
+                pred.append(0)
+        custom_method[method_name]['y'].extend(real_class)
+        custom_method[method_name]['pred'].extend(pred)
+
+    def evaluate(self, group_name):
+		# this method is called and aggregates all experiment results
+		# to generate final score per data set
+        Utils.create_folder_if_not_exist(self.output_folder)
+        save_path = os.path.join(self.output_folder, self.name)
+        Utils.create_folder_if_not_exist(save_path)
+
+        for validation_source in self.method_f1.keys():
+            custom_method = self.custom_method[validation_source]
+            methods = []
+            for method_name, _val in custom_method.items():
+                pred = _val['pred']
+                pred = np.nan_to_num(pred, True, 0.0, 1.0, 0.0)
+                val = self.__calculate_score(_val['y'], pred)
+                methods.append(f"{method_name} Custom Score: {f1:.4f}")
+            name = f"{group_name}_{validation_source}"
+            path_file = f"{name}.txt"
+            path_method = os.path.join(save_path,
+                                       path_file)
+            with open(path_method, mode='wt', encoding='utf-8') as out_scores:
+                out_scores.write('\n'.join(methods))
+        self.custom_method = {}
+        self.logger.info("done")
 ```
 
 Then add metric in config specifying the correct module and class name.
 Feel free to check the codebase in the evaluationmetrics folder to see example implementations
 
 - **Custom silico generator**
-To use your own silico generator with this framework you need to inherit from SilicoDataGenerator located in the silico.generators.base module, or have the following functions in your class body:
+To use your own silico generator with this framework you need to inherit from SilicoDataGenerator located in the silico.generators.base module:
 
-```
-def __init__(self, config):
-    pass
-def generate_experiments(self,
-                            validation_data,
-                            num_experiments,
-                            num_genes) -> GeneData:
-    pass
+```python
+# example of custom silico data generator
+from numpy.lib.function_base import diff
+from genebench.silico.generators.base import SilicoDataGenerator
+from genebench.datatypes import GeneData
+from genebench.datatypes import GeneDiffValidation
+from genebench.datatypes import GeoData
+from genebench.utils import Utils
+import numpy as np
+import random
+
+# this structure will contain the config from the "config" field
+# of the generator entry 
+class CustomDataGeneratorParam():
+    def __init__(self,
+                 diff_factor,
+                 noise_factor,
+                 num_replicates):
+        self.diff_factor = diff_factor
+        self.noise_factor = noise_factor
+        self.num_replicates = num_replicates
+        pass
+
+# this example is the actual LinearDataGenerator
+class CustomDataGenerator(SilicoDataGenerator):
+    def __init__(self, config):
+        super().__init__(config)
+        self.param = LinearDataGeneratorParam(**self.config.params)
+        self.logger = Utils.get_logger('LinearDataGenerator')
+        pass
+
+    def generate_single(self, validation_data, id, num_genes) -> GeoData:
+        all_tfs = list(validation_data.data.keys())
+        picked_tf = random.choice(all_tfs)
+        perturbed_genes = set(validation_data.data[picked_tf])
+        genes = Utils.get_random_gene_names(num_genes)
+        mask = []
+        for gene in genes:
+            if gene in perturbed_genes:
+                mask.append(1)
+            else:
+                mask.append(0)
+        mask = np.array(mask)
+        df_factor = self.param.diff_factor
+        validation = []
+        for index, mask_value in enumerate(mask.tolist()):
+            if mask_value == 1:
+                validation.append(genes[index])
+        num_replicates = self.param.num_replicates
+        mask = np.array([mask])
+        mask = np.repeat(mask, num_replicates, axis=0).T
+        control = np.random.rand(num_genes, num_replicates)
+        effect = np.random.rand(num_genes, num_replicates) * df_factor
+        perturbation = control + np.multiply(mask, effect)
+
+        gene_data = GeoData({
+            "name": f"CUSTOM_SIL_{id}",
+            "perturbed_series_names": ['fakeseries'],
+            "control_series_names": ['fakeseries'],
+            "extra_info": {"none": "none"},
+            "perturbed_array": perturbation.tolist(),
+            "control_array": control.tolist(),
+            "source": self.config.source,
+            "genes": genes,
+            "pf": picked_tf
+        })
+
+        return gene_data
+
+    def generate_experiments(self,
+                             validation_data: GeneDiffValidation,
+                             num_experiments,
+                             num_genes):
+        experiments = []
+        for id in range(0, num_experiments):
+            experiments.append(self.generate_single(validation_data,
+                                                    id,
+                                                    num_genes))
+        return experiments
 ```

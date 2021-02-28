@@ -49,12 +49,3 @@ class GenerateSilicoData():
                 self.logger.info(f"silico experiment {id+1}/{len(provider)}")
                 self.store.insert_geo(experiment)
         self.logger.info("done")
-
-
-def main():
-    generate = GenerateSilicoData("config.json")
-    generate.run()
-
-
-if __name__ == "__main__":
-    main()

@@ -4,20 +4,20 @@
 		"metrics":{
 			"Kolmogorov": {
 				"name": "Kolmogorov",
-				"module_name": "evaluationmetrics.kolmogorov",
+				"module_name": "genebench.evaluationmetrics.kolmogorov",
 				"class_name":"Kolmogorov",
 				"params":{
 				}
 			},
 			"ROC": {
 				"name": "ROC",
-				"module_name": "evaluationmetrics.roc",
+				"module_name": "genebench.evaluationmetrics.roc",
 				"class_name":"ROC",
 				"params":{}
 			},
 			"F1": {
 				"name": "F1",
-				"module_name": "evaluationmetrics.f1",
+				"module_name": "genebench.evaluationmetrics.f1",
 				"class_name":"F1",
 				"params":{}
 			}
@@ -31,7 +31,7 @@
 	"SilicoGenerators":{
 		"silico.linear":{
 			"source": "silico_linear",
-			"module_name": "silico.generators.linear",
+			"module_name": "genebench.silico.generators.linear",
 			"class_name":"LinearDataGenerator",
 			"params": {
 						"diff_factor":3.0,
@@ -112,32 +112,32 @@
 	},
 	"Methods":{
 		"TTest":{
-			"module_name":"diffmethods.ttest",
+			"module_name":"genebench.diffmethods.ttest",
 			"class_name":"TTest",
 			"config":{}
 		},
 		"LIMMA":{
-			"module_name":"diffmethods.limma",
+			"module_name":"genebench.diffmethods.limma",
 			"class_name":"LIMMA",
 			"config":{}
 		},
 		"SAM":{
-			"module_name":"diffmethods.sam",
+			"module_name":"genebench.diffmethods.sam",
 			"class_name":"SAM",
 			"config":{}
 		},
 		"Random":{
-			"module_name":"diffmethods.random",
+			"module_name":"genebench.diffmethods.random",
 			"class_name":"Random",
 			"config": {}
 		},
 		"Characteristic direction py":{
-			"module_name":"diffmethods.chdirpy",
+			"module_name":"genebench.diffmethods.chdirpy",
 			"class_name":"ChDirPy",
 			"config":{}
 		},
 		"MIDGET Neural[n1]":{
-			"module_name":"diffmethods.MIDGET.neural",
+			"module_name":"genebench.diffmethods.MIDGET.neural",
 			"class_name":"MIDGETNeural",
 			"config": {
 				"data_split": 0.25,
@@ -147,12 +147,12 @@
 				"number_of_epochs": 1000,
 				"save_point_num_batches": 10,
 				"model_name": "n1",
-				"output_folder":"../data/MIDGETNeural" ,
+				"output_folder":"data/MIDGETNeural" ,
 				"feature_file":"features.pkl"
 			}
 		},
 		"MIDGET Neural[n2]":{
-			"module_name":"diffmethods.MIDGET.neural",
+			"module_name":"genebench.diffmethods.MIDGET.neural",
 			"class_name":"MIDGETNeural",
 			"config": {
 				"data_split": 0.25,
@@ -162,12 +162,12 @@
 				"number_of_epochs": 1000,
 				"save_point_num_batches": 10,
 				"model_name": "n2",
-				"output_folder":"../data/MIDGETNeural",
+				"output_folder":"data/MIDGETNeural",
 				"feature_file":"features.pkl"
 			}
 		},
 		"MIDGET Neural[n3]":{
-			"module_name":"diffmethods.MIDGET.neural",
+			"module_name":"genebench.diffmethods.MIDGET.neural",
 			"class_name":"MIDGETNeural",
 			"config": {
 				"data_split": 0.25,
@@ -177,12 +177,12 @@
 				"number_of_epochs": 1000,
 				"save_point_num_batches": 10,
 				"model_name": "n3",
-				"output_folder":"../data/MIDGETNeural",
+				"output_folder":"data/MIDGETNeural",
 				"feature_file":"features.pkl"
 			}
 		},
 		"MIDGET Neural[n4]":{
-			"module_name":"diffmethods.MIDGET.neural",
+			"module_name":"genebench.diffmethods.MIDGET.neural",
 			"class_name":"MIDGETNeural",
 			"config": {
 				"data_split": 0.25,
@@ -192,12 +192,12 @@
 				"number_of_epochs": 1000,
 				"save_point_num_batches": 10,
 				"model_name": "n4",
-				"output_folder":"../data/MIDGETNeural",
+				"output_folder":"data/MIDGETNeural",
 				"feature_file":"features.pkl"
 			}
 		},
 		"MIDGET Neural[n5]":{
-			"module_name":"diffmethods.MIDGET.neural",
+			"module_name":"genebench.diffmethods.MIDGET.neural",
 			"class_name":"MIDGETNeural",
 			"config": {
 				"data_split": 0.25,
@@ -207,12 +207,12 @@
 				"number_of_epochs": 1000,
 				"save_point_num_batches": 10,
 				"model_name": "n5",
-				"output_folder":"../data/MIDGETNeural",
+				"output_folder":"data/MIDGETNeural",
 				"feature_file":"features.pkl"
 			}
 		},
 		"MIDGET Neural[n6]":{
-			"module_name":"diffmethods.MIDGET.neural",
+			"module_name":"genebench.diffmethods.MIDGET.neural",
 			"class_name":"MIDGETNeural",
 			"config": {
 				"data_split": 0.25,
@@ -222,19 +222,19 @@
 				"number_of_epochs": 1000,
 				"save_point_num_batches": 10,
 				"model_name": "n6",
-				"output_folder":"../data/MIDGETNeural",
+				"output_folder":"data/MIDGETNeural",
 				"feature_file":"features.pkl"
 			}
 		},
 		"MIDGET XGB[xgb1]":{
-			"module_name":"diffmethods.MIDGET.xgb",
+			"module_name":"genebench.diffmethods.MIDGET.xgb",
 			"class_name":"MIDGETXgBoost",
 			"config": {
 				"feature_file":"features.pkl",
 				"data_split": 0.25,
 				"num_round": 1000,
 				"model_name": "xgb1",
-				"model_folder": "../data/MIDGETXGB",
+				"model_folder": "data/MIDGETXGB",
 				"param": {
 					"verbosity": 2,
 					"nthread": 8,
@@ -245,14 +245,14 @@
 			}
 		},
 		"MIDGET XGB[xgb2]":{
-			"module_name":"diffmethods.MIDGET.xgb",
+			"module_name":"genebench.diffmethods.MIDGET.xgb",
 			"class_name":"MIDGETXgBoost",
 			"config": {
 				"feature_file":"features.pkl",
 				"data_split": 0.25,
 				"num_round": 1000,
 				"model_name": "xgb2",
-				"model_folder": "../data/MIDGETXGB",
+				"model_folder": "data/MIDGETXGB",
 				"param":{
 					"verbosity": 2,
 					"nthread": 8,
@@ -270,9 +270,9 @@
 				"host":"localhost",
 				"port":27017,
 				"anon":true,
-				"user":"drakera",
-				"password":"surasulfeteidintramvaim-afermecatdefinitiv",
-				"database_name":"gene_expression_test",
+				"user":"",
+				"password":"",
+				"database_name":"gene_expression_bench_test",
 				"validation_collection_name":"validation",
 				"geo_data_collection_name":"geo",
 				"results_collection_name":"results"
@@ -298,12 +298,12 @@
 		 	{
 				"pf_field": "tf",
 				"name":"tf_perturbations",
-				"file":"GEOdatasets_tf_perturbations.json"
+				"file":"data/default_experiments/GEOdatasets_tf_perturbations.json"
 	 		},
 	 		{
 				"pf_field": "drug",
 		 		"name":"drug_perturbations",
-		 		"file":"GEOdatasets_drugs_perturbations.json"
+		 		"file":"data/default_experiments/GEOdatasets_drugs_perturbations.json"
 	 		}
 		],
 		"labeling":
