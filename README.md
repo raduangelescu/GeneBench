@@ -1,8 +1,7 @@
 # GeneBench
 
 
-![Image logo]
-(https://github.com/raduangelescu/GeneBench/blob/master/logo.svg)
+![Image logo](https://github.com/raduangelescu/GeneBench/blob/master/logo.svg)
 
 
 Benchmark-ing framework used in analyzing methods that detect deferentially expressed genes from biological samples
