@@ -10,6 +10,7 @@ Besides being a benchmarking framework it also contains some commonly used Diffe
   - [Characteristic Direction](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-15-79) (R implementation **crashes on large data** with out of memory because of normal PCA )
   - [T-Test](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html)
   - [SAM](https://cran.r-project.org/web/packages/samr/index.html)
+
 Our own methods based on machine learning:
   - **MIDGET-xgb** (2 variations)
   - **MIDGET-neural** (6 variations)
