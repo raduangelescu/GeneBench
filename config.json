@@ -1,6 +1,6 @@
 {
 	"AccuracyMetrics":{
-		"output_folder":"../data/metrics" ,
+		"output_folder":"data/metrics" ,
 		"metrics":{
 			"Kolmogorov": {
 				"name": "Kolmogorov",
@@ -278,7 +278,7 @@
 				"results_collection_name":"results"
 			},
 			"filesystem": {
-				"base_path":"../data/db_test",
+				"base_path":"data/db_test",
 				"validation_folder":"validation",
 				"geo_folder": "geo",
 				"results_folder": "results"
@@ -290,7 +290,7 @@
 		]
 	},
 	"GEOImporter":{
-		"data_path":"../data",
+		"data_path":"data",
 		"download_retry_count": 10,
 		"download_wait_seconds_before_retry": 5,
 		"geo_cache_folder_name":"cache",
@@ -317,7 +317,7 @@
 		}
 	},
 	"ValidationDataImporter":{
-		"base_path":"../data/validation_sources",
+		"base_path":"data/validation_sources",
 		"sources":{
 			"ENCODE":{
 				"data_file":"encode_gene_attribute_matrix.txt",

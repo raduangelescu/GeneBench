@@ -1,9 +1,9 @@
 from numpy.lib.function_base import diff
-from silico.generators.base import SilicoDataGenerator
-from datatypes import GeneData
-from datatypes import GeneDiffValidation
-from datatypes import GeoData
-from utils import Utils
+from genebench.silico.generators.base import SilicoDataGenerator
+from genebench.datatypes import GeneData
+from genebench.datatypes import GeneDiffValidation
+from genebench.datatypes import GeoData
+from genebench.utils import Utils
 import numpy as np
 import random
 

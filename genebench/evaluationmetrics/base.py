@@ -1,4 +1,4 @@
-from datatypes import GeneDiffValidation, GeneMethodResult
+from genebench.datatypes import GeneDiffValidation, GeneMethodResult
 
 
 class Metric():

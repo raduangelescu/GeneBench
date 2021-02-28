@@ -1,8 +1,8 @@
-from diffmethods.base.rdiffmethod import RDiffMethod
-from diffmethods.base.rdiffmethod import RDiffMethodConfig
 import rpy2.robjects as ro
 import pandas as pd
 import numpy as np
+from genebench.diffmethods.base.rdiffmethod import RDiffMethod
+from genebench.diffmethods.base.rdiffmethod import RDiffMethodConfig
 
 
 class LIMMA(RDiffMethod):

@@ -1,5 +1,5 @@
-from datatypes import GeneDiffInput
-from datatypes import GeneMethodResult
+from genebench.datatypes import GeneDiffInput
+from genebench.datatypes import GeneMethodResult
 import numpy as np
 
 

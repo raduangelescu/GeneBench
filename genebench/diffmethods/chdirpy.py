@@ -1,8 +1,8 @@
 import numpy as np
-from datatypes import GeneMethodResult
-from datatypes import GeneDiffInput
-from diffmethods.base.diffmethod import DiffMethod
-from utils import Utils
+from genebench.datatypes import GeneMethodResult
+from genebench.datatypes import GeneDiffInput
+from genebench.diffmethods.base.diffmethod import DiffMethod
+from genebench.utils import Utils
 
 
 class ChDirPy(DiffMethod):

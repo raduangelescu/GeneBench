@@ -1,9 +1,9 @@
 import csv
 import os
 import re
-from storage.storage import Storage
-from utils import Utils
-from datatypes import GeneDiffValidation
+from genebench.storage.storage import Storage
+from genebench.utils import Utils
+from genebench.datatypes import GeneDiffValidation
 
 
 class ValidationDataImporterConfig:

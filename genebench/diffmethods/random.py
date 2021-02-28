@@ -1,6 +1,6 @@
-from datatypes import GeneDiffInput, GeneMethodResult
-from diffmethods.base.diffmethod import DiffMethod
 import numpy as np
+from genebench.datatypes import GeneDiffInput, GeneMethodResult
+from genebench.diffmethods.base.diffmethod import DiffMethod
 
 
 class Random(DiffMethod):

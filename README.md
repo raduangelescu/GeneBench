@@ -70,7 +70,7 @@ The config file needs the **"Storage"** section in order to know how you will se
 				"results_collection_name":"results collection name"
 			},
 			"filesystem": {
-				"base_path":"base folder for storing all info", 
+				"base_path":"base folder for storing all info that must exist in filesystem", 
 				"validation_folder":"the validation folder name",
 				"geo_folder": "geo folder name",
 				"results_folder": "results folder name"
@@ -97,7 +97,7 @@ To generate the silico data you need to have the **"SilicoData"** and **"SilicoG
 	"SilicoGenerators":{
 		"silico.linear":{ -> add an entry for every silico data generator
 			"source": "silico_linear", -> name of the generator source for later identification
-			"module_name": "silico.generators.linear", -> module name from which to import the generator
+			"module_name": "genebench.silico.generators.linear", -> module name from which to import the generator
 			"class_name":"LinearDataGenerator", -> the generator class name
 			"params": { -> custom generator parameters
 						"diff_factor":3.0,
@@ -111,6 +111,7 @@ To generate the silico data you need to have the **"SilicoData"** and **"SilicoG
 After providing the correct config file you only need to run the below code:
 ```
 from genebench.generatesilico import GenerateSilicoData
+
 generate = GenerateSilicoData("config.json")
 generate.run()
 ```

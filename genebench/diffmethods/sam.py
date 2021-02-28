@@ -1,11 +1,10 @@
-from diffmethods.base.rdiffmethod import RDiffMethod
-from diffmethods.base.rdiffmethod import RDiffMethodConfig
 import rpy2.robjects as ro
 import pandas as pd
 from rpy2.robjects import (pandas2ri, numpy2ri)
 import numpy as np
 import scipy
-
+from genebench.diffmethods.base.rdiffmethod import RDiffMethod
+from genebench.diffmethods.base.rdiffmethod import RDiffMethodConfig
 
 class SAM(RDiffMethod):
 

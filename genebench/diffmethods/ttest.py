@@ -1,9 +1,8 @@
-from datatypes import GeneDiffInput, GeneMethodResult
-from diffmethods.base.diffmethod import DiffMethod
 import scipy.stats
 from numpy import array, empty
 import numpy as np
-
+from genebench.datatypes import GeneDiffInput, GeneMethodResult
+from genebench.diffmethods.base.diffmethod import DiffMethod
 
 class TTest(DiffMethod):
 

@@ -1,6 +1,4 @@
 include README.md
-include genebench/GEOdatasets_drugs_perturbations.json
-include genebench/GEOdatasets_tf_perturbations.json
 include genebench/diffmethods/base/R/characteristic_direction.r
 include genebench/diffmethods/base/R/limma.r
 include genebench/diffmethods/base/R/sam.r

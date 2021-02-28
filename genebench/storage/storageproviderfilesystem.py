@@ -1,9 +1,9 @@
 import os
 import json
-from utils import Utils
-from datatypes import GeneDiffValidation, GeoData, GeneMethodResult
-from typing import List
 import glob
+from typing import List
+from genebench.utils import Utils
+from genebench.datatypes import GeneDiffValidation, GeoData, GeneMethodResult
 
 
 class FileSystemConfig:

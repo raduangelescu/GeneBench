@@ -1,6 +1,6 @@
-from datatypes import GeneDiffInput
-from datatypes import GeneMethodResult
-from utils import Utils
+from genebench.datatypes import GeneDiffInput
+from genebench.datatypes import GeneMethodResult
+from genebench.utils import Utils
 import importlib
 
 

@@ -1,8 +1,7 @@
-from utils import Utils
+from genebench.utils import Utils
 import numpy as np
 import pickle
-import random
-from diffmethods.base.diffmethod import DiffMethod
+from genebench.diffmethods.base.diffmethod import DiffMethod
 
 
 class MIDGET(DiffMethod):

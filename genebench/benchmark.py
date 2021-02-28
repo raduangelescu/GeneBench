@@ -1,8 +1,8 @@
-from datatypes import GeneDiffInput, GeneData
-from utils import Utils
-from diffmethods.diffmethodsmanager import DiffMethodsManager
-from storage.storage import Storage
-from evaluationmetrics.metricmanager import MetricManager
+from genebench.datatypes import GeneDiffInput, GeneData
+from genebench.utils import Utils
+from genebench.diffmethods.diffmethodsmanager import DiffMethodsManager
+from genebench.storage.storage import Storage
+from genebench.evaluationmetrics.metricmanager import MetricManager
 
 
 class BenchmarkMethodGroupConfig:

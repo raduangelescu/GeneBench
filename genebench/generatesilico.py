@@ -1,6 +1,6 @@
-from silico.silicogeneratorsmanager import SilicoGeneratorsManager
-from storage.storage import Storage
-from utils import Utils
+from genebench.silico.silicogeneratorsmanager import SilicoGeneratorsManager
+from genebench.storage.storage import Storage
+from genebench.utils import Utils
 
 
 class GenerateSilicoConfig():

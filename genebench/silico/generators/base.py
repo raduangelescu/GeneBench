@@ -1,5 +1,5 @@
 
-from datatypes import GeneData, GeneDiffValidation
+from genebench.datatypes import GeneData, GeneDiffValidation
 
 
 class SilicoDataGeneratorConfig:

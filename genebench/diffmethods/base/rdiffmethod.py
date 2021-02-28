@@ -1,11 +1,10 @@
-from diffmethods.base.diffmethod import DiffMethod
 import os
-from utils import Utils
 import rpy2.robjects as ro
 from rpy2.robjects import (pandas2ri, numpy2ri)
 from rpy2.robjects.conversion import localconverter
-from datatypes import GeneDiffInput, GeneMethodResult
-
+from genebench.datatypes import GeneDiffInput, GeneMethodResult
+from genebench.utils import Utils
+from genebench.diffmethods.base.diffmethod import DiffMethod
 
 class RDiffMethodConfig:
     def __init__(self,

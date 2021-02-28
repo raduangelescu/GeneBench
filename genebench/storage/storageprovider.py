@@ -1,4 +1,4 @@
-from datatypes import GeneMethodResult, GeoData, GeneDiffValidation
+from genebench.datatypes import GeneMethodResult, GeoData, GeneDiffValidation
 
 
 class StorageProvider:

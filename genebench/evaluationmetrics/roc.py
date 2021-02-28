@@ -1,6 +1,6 @@
-from evaluationmetrics.base import Metric
-from datatypes import GeneDiffValidation, GeneMethodResult
-from utils import Utils
+from genebench.evaluationmetrics.base import Metric
+from genebench.datatypes import GeneDiffValidation, GeneMethodResult
+from genebench.utils import Utils
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import uniform

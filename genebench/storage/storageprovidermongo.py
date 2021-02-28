@@ -2,10 +2,10 @@ from pymongo import MongoClient
 import gridfs
 import copy
 import json
-from storage.storageprovider import StorageProvider
-from datatypes import GeoData, GeneMethodResult, GeneDiffValidation
+from genebench.storage.storageprovider import StorageProvider
+from genebench.datatypes import GeoData, GeneMethodResult, GeneDiffValidation
 from typing import List
-from utils import Utils
+from genebench.utils import Utils
 
 
 class MongoConfig:

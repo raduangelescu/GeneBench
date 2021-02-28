@@ -1,11 +1,10 @@
-from datatypes import GeneDiffInput, GeneMethodResult
-from diffmethods.MIDGET.common import MIDGET
 import numpy as np
 import os
 import tensorflow as tf
-from utils import Utils
 import random
-
+from genebench.datatypes import GeneDiffInput, GeneMethodResult
+from genebench.diffmethods.MIDGET.common import MIDGET
+from genebench.utils import Utils
 
 class MIDGETNeuralConfig:
     def __init__(self,

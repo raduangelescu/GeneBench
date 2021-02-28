@@ -1,11 +1,10 @@
-from datatypes import GeneDiffInput, GeneMethodResult
-from diffmethods.MIDGET.common import MIDGET
 import os
 import xgboost as xgb
 from sklearn.metrics import accuracy_score
-from utils import Utils
 import random
-
+from genebench.utils import Utils
+from genebench.datatypes import GeneDiffInput, GeneMethodResult
+from genebench.diffmethods.MIDGET.common import MIDGET
 
 class MIDGETXgBoostConfig:
     def __init__(self,

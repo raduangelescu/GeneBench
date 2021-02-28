@@ -1,8 +1,8 @@
-from diffmethods.base.rdiffmethod import RDiffMethod
-from diffmethods.base.rdiffmethod import RDiffMethodConfig
 import numpy as np
 import pandas as pd
 
+from genebench.diffmethods.base.rdiffmethod import RDiffMethod
+from genebench.diffmethods.base.rdiffmethod import RDiffMethodConfig
 # Note that we don't sort results as they should be already sorted
 # from the R algorithm: https://rdrr.io/cran/GeoDE/man/chdirAnalysis.html
 

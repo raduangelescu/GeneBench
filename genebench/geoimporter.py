@@ -3,12 +3,11 @@ import sys
 import os
 import json
 import numpy as np
-from utils import Utils
-from storage.storage import Storage
-from datatypes import GeoData
 import GEOparse
 import pandas as pd
-
+from genebench.utils import Utils
+from genebench.storage.storage import Storage
+from genebench.datatypes import GeoData
 
 class LabelingConfig:
     def __init__(self, control, type, gene_names,

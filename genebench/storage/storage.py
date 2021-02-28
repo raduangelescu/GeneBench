@@ -1,7 +1,7 @@
-from utils import Utils
-from storage.storageprovidermongo import StorageProviderMongo
-from storage.storageproviderfilesystem import StorageProviderFileSystem
-from datatypes import GeneDiffValidation, GeoData, GeneMethodResult
+from genebench.utils import Utils
+from genebench.storage.storageprovidermongo import StorageProviderMongo
+from genebench.storage.storageproviderfilesystem import StorageProviderFileSystem
+from genebench.datatypes import GeneDiffValidation, GeoData, GeneMethodResult
 
 
 class StorageConfig:

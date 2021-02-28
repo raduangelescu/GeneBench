@@ -1,7 +1,7 @@
-from datatypes import GeneData
-from datatypes import GeoData
-from datatypes import GeneDiffValidation
-from utils import Utils
+from genebench.datatypes import GeneData
+from genebench.datatypes import GeoData
+from genebench.datatypes import GeneDiffValidation
+from genebench.utils import Utils
 import importlib
 
 
