@@ -1,5 +1,7 @@
 ![Image logo](https://raw.githubusercontent.com/raduangelescu/GeneBench/main/logo.svg)
+
 ##Overview
+
 Gene Bench is a benchmark-ing framework used in analyzing methods that detect differentially expressed genes from biological samples.
 Besides being a benchmarking framework it also contains some commonly used Differential genes detection algorithms:
   
@@ -453,9 +455,10 @@ After you have all your validation and experiment data in your storage providers
 ```
 
 ### Providing custom implementations
-####Custom Method implementation:
+- **Custom Method**
 To use your own method with this framework you need to inherit from DiffMethod located in the diffmethods.base module, or have the following functions in your class body:
-  ```
+
+```
 def setup(self, config):
     #setup code, only done once per benchmark
     pass
@@ -469,8 +472,10 @@ def run(self, input: GeneDiffInput) -> GeneMethodResult:
     pass
   ```
 Then either add method in config specifying the correct module and class name.
-####Custom Metric implementation
+
+- **Custom Metric**
 To use your own method with this framework you need to inherit from Metric located in the evaluationmetrics.base module, or have the following functions in your class body:
+
 ```
 def __init__(self, output_folder):
     pass
@@ -487,11 +492,13 @@ def evaluate(self, group_name):
     #function in which you run the evaluation
     pass
 ```
+
 Then add metric in config specifying the correct module and class name.
 Feel free to check the codebase in the evaluationmetrics folder to see example implementations
 
-####Custom silico generator implementation
+- **Custom silico generator**
 To use your own silico generator with this framework you need to inherit from SilicoDataGenerator located in the silico.generators.base module, or have the following functions in your class body:
+
 ```
 def __init__(self, config):
     pass
@@ -501,4 +508,3 @@ def generate_experiments(self,
                             num_genes) -> GeneData:
     pass
 ```
-
