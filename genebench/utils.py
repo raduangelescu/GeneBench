@@ -12,47 +12,6 @@ class Utils:
     NEG_INF = 0
 
     @staticmethod
-    def get_feature_vector_size(self):
-        return 11
-
-    @staticmethod
-    def get_feature_vector(control_gene, perturbed_gene):
-        # y_g = (y_g1, y_g2... y_gn) - column vector  whene n is the number of RNA samples
-        # X = nXp design matrix representing experimental design
-        # Beta_g = unknown coefficient vector that parametrizes the average expression levels in each experimental condition
-        # y_g_i is assumed independant with wariance sigma_g^2
-        c_g = control_gene
-        p_g = perturbed_gene
-        # number of same gene values (control + perturbation)
-        n = c_g.shape[0] + p_g.shape[0]
-        # number of situations
-        p = 2
-
-        X = np.append(np.zeros((c_g.shape[0], 1)),
-                      np.ones((p_g.shape[0], 1)),
-                      axis=0)
-        yg = np.append(c_g, p_g)
-        inverse_mtx = np.linalg.inv(np.matmul(np.transpose(X), X))
-        inverse_transpose_mul = np.matmul(inverse_mtx, np.transpose(X))
-        beta_g = np.matmul(inverse_transpose_mul, yg)
-        dg = n - p
-        mu = np.matmul(X, beta_g)
-        residual = yg - mu
-        sg2 = np.dot(residual, residual)/dg
-        feature_vector = [beta_g[0],
-                          sg2,
-                          dg,
-                          np.var(c_g),
-                          np.var(p_g),
-                          c_g[0],
-                          c_g[1],
-                          c_g[2],
-                          p_g[0],
-                          p_g[1],
-                          p_g[2]]
-        return np.array(feature_vector)
-
-    @staticmethod
     def quantile_normalize(df_input):
         df = df_input.copy()
         dic = {}
@@ -151,7 +110,6 @@ class Utils:
         ch.setFormatter(formatter)
         logger.addHandler(fh)
         logger.addHandler(ch)
-        
         return logger
 
     @staticmethod
@@ -213,25 +171,3 @@ class Utils:
         plt.plot(x, y)
         plt.xlabel('rank', fontsize=16)
         plt.ylabel('cdf(r)-r', fontsize=16)
-
-    @staticmethod
-    def filter_data(logger, data):
-        np_data = np.array(data)
-        if np.isnan(np_data):
-            logger.warning("Bad data, we need to fix NAN and Inf")
-        np_data = np.nan_to_num(np_data,
-                                nan=0.0,
-                                posinf=99999.0,
-                                neginf=-99999.0)
-        np_data = log_if_necessary(np_data.T)
-
-        if np.isnan(np_data).any():
-            logger.error("Bad data, not log")
-            return False
-
-        pd_data = pd.DataFrame(np_data)
-        pd_data_q = quantileNormalize(pd_data)
-        if np.isnan(pd_data_q.to_numpy()).any():
-            logger.error("Bad data, bad normalization")
-            return False
-        return pd_data_q
