@@ -49,8 +49,8 @@ class MIDGETXgBoost(MIDGET):
         data = self.load_training(features_file_name)
         random.shuffle(data)
         split_point = int(len(data) * self.config.data_split)
-        test_data_split = data[:split_point]
-        train_data_split = data[split_point:]
+        train_data_split = data[:split_point]
+        test_data_split = data[split_point:]
         num_round = self.config.num_round
         param = self.config.param
         self.logger.info(f"params for training {param}, num_rounds: {num_round}")

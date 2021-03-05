@@ -713,3 +713,5 @@ class CustomDataGenerator(SilicoDataGenerator):
                                                     num_genes))
         return experiments
 ```
+- **Training MIDGET and benching**
+  To do this you may check the train.py file in the examples folder. Note that training and benching may take a whole day with the default configurations.

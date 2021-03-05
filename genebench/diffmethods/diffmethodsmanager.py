@@ -50,16 +50,21 @@ class DiffMethodsManager:
 
     def train(self, method_name: str):
         if method_name not in self.method_instances:
-            self.logger(f"Method {method_name} not found!")
+            self.logger.error(f"Method {method_name} not found!")
             return False
 
         instance = self.method_instances[method_name]
         instance.train()
         return True
-
+    
+    def train_all(self):
+        for method_name, instance in self.method_instances.items():
+            self.logger.info(f"Training {method_name} ..")
+            instance.train()
+    
     def run(self, gene_input: GeneDiffInput, method_name: str):
         if method_name not in self.method_instances:
-            self.logger(f"Method {method_name} not found!")
+            self.logger.error(f"Method {method_name} not found!")
             return GeneMethodResult()
 
         instance = self.method_instances[method_name]

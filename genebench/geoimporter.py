@@ -264,7 +264,7 @@ class GEOImporter:
         log_data = {}
         for data_item in input.data:
             geo_id = data_item['geoid']
-            pf = data_item[input.pf_field]
+            pf = data_item[input.pf_field].lower()
             info_msg = f'Getting GEO: {geo_id} in cache folder {cache_path}'
             self.logger.info(info_msg)
             gse = self.__download_retry(geo_id, cache_path)

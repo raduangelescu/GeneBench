@@ -62,8 +62,8 @@ class MIDGETNeural(MIDGET):
         batch_size = self.config.batch_size
         number_of_epochs = self.config.number_of_epochs
         split_point = int(len(data) * self.config.data_split)
-        test_data = data[:split_point]
-        train_data = data[split_point:]
+        train_data = data[:split_point]
+        test_data = data[split_point:]
 
         X, y = self.get_data(train_data)
 
@@ -79,7 +79,9 @@ class MIDGETNeural(MIDGET):
                                       y,
                                       batch_size=batch_size)
         self.logger.info(f'evaluate loss and accuracy {results}')
-        self.model.save(self.config.model_name)
+        save_path = os.path.join(self.config.output_folder,
+                                 self.config.model_name, "model")
+        self.model.save(save_path)
         self.logger.info("Done training")
 
     def run(self, input: GeneDiffInput) -> GeneMethodResult:
